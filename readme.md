@@ -22,12 +22,12 @@ $server = new CapMousse\ReactRestify\Server("MyAPP", "0.0.0.1");
 
 // Middleware
 $server->use(function ($request, $next) {
-	print_r($request->getMethod());
+	print_r($request->httpRequest->getMethod());
 	$next();
 });
 
 // Dependency injection
-$server->add(\Foo\Bar::class)
+$server->add(\Foo\Bar::class);
 
 $server->get('/hello/{name}', function ($request, $response, \Foo\Bar $bar, $name) {
     $response
